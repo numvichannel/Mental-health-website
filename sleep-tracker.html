@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleep Tracker - CLEAR MINDS</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sleep-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px 20px;
+        }
+
+        .sleep-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .sleep-header h1 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sleep-card {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-field {
+            display: grid;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .sleep-quality {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .quality-option {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            background-color: white;
+        }
+
+        .quality-option:hover,
+        .quality-option.active {
+            border-color: var(--primary-color);
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+
+        .sleep-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tip {
+            background-color: var(--bg-gray);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .tip strong {
+            color: var(--primary-color);
+        }
+
+        .sleep-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, var(--bg-gray), white);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .history-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .history-item {
+            background-color: var(--bg-gray);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-date {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .history-data {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--bg-gray);
+            border-radius: 12px;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>CLEAR MINDS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#wellness">Wellness</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sleep Tracker -->
+    <div class="sleep-container">
+        <div class="sleep-header">
+            <h1>🛏️ Sleep Tracker</h1>
+            <p>Monitor and improve your sleep quality for better health</p>
+        </div>
+
+        <!-- Log Sleep Entry -->
+        <div class="sleep-card">
+            <h2>Log Your Sleep</h2>
+            <form id="sleepForm">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Date</label>
+                        <input type="date" id="sleepDate" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Sleep Duration (hours)</label>
+                        <input type="number" id="sleepDuration" min="0" max="24" step="0.5" placeholder="e.g., 7.5" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Bedtime</label>
+                        <input type="time" id="bedtime" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Wake time</label>
+                        <input type="time" id="waketime" required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label>Sleep Quality</label>
+                    <div class="sleep-quality">
+                        <button type="button" class="quality-option" data-quality="poor">Poor 😴</button>
+                        <button type="button" class="quality-option" data-quality="fair">Fair 😐</button>
+                        <button type="button" class="quality-option" data-quality="good">Good 😊</button>
+                        <button type="button" class="quality-option" data-quality="excellent">Excellent 😴✨</button>
+                    </div>
+                    <input type="hidden" id="selectedQuality" name="quality" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Notes (optional)</label>
+                    <textarea id="sleepNotes" placeholder="Any factors that affected your sleep..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Log Sleep</button>
+                <button type="reset" class="btn btn-secondary" style="margin-top: 20px;">Clear</button>
+            </form>
+        </div>
+
+        <!-- Sleep Statistics -->
+        <div class="sleep-card">
+            <h2>Sleep Statistics</h2>
+            <div class="sleep-stats" id="sleepStats">
+                <div class="stat-box">
+                    <div class="stat-number" id="avgSleep">0</div>
+                    <div class="stat-label">Avg Hours/Night</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="totalNights">0</div>
+                    <div class="stat-label">Nights Logged</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="goodSleep">0</div>
+                    <div class="stat-label">Good Nights</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px;">Sleep History</h3>
+            <div id="sleepHistory" class="history-list">
+                <!-- History entries will be loaded here -->
+            </div>
+        </div>
+
+        <!-- Sleep Tips -->
+        <div class="sleep-card">
+            <h2>Tips for Better Sleep</h2>
+            <div class="sleep-tips">
+                <div class="tip">
+                    <strong>🕐 Consistent Schedule</strong>
+                    <p>Go to bed and wake up at the same time daily</p>
+                </div>
+                <div class="tip">
+                    <strong>📱 Limit Screen Time</strong>
+                    <p>Avoid screens 1 hour before bedtime</p>
+                </div>
+                <div class="tip">
+                    <strong>🌙 Dark Environment</strong>
+                    <p>Keep your bedroom dark and cool</p>
+                </div>
+                <div class="tip">
+                    <strong>☕ Avoid Caffeine</strong>
+                    <p>Don't consume caffeine after 2 PM</p>
+                </div>
+                <div class="tip">
+                    <strong>🧘 Relaxation</strong>
+                    <p>Practice meditation or relaxation techniques</p>
+                </div>
+                <div class="tip">
+                    <strong>🏃 Exercise</strong>
+                    <p>Regular exercise improves sleep quality</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 80px;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CLEAR MINDS. Most adults need 7-9 hours of sleep per night.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Set today's date as default
+        document.getElementById('sleepDate').valueAsDate = new Date();
+
+        // Quality option selection
+        document.querySelectorAll('.quality-option').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.quality-option').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('selectedQuality').value = this.getAttribute('data-quality');
+            });
+        });
+
+        // Form submission
+        document.getElementById('sleepForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const sleepEntry = {
+                date: document.getElementById('sleepDate').value,
+                duration: parseFloat(document.getElementById('sleepDuration').value),
+                bedtime: document.getElementById('bedtime').value,
+                waketime: document.getElementById('waketime').value,
+                quality: document.getElementById('selectedQuality').value,
+                notes: document.getElementById('sleepNotes').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            let sleepData = JSON.parse(localStorage.getItem('clearMinds_sleep')) || [];
+            sleepData.push(sleepEntry);
+            localStorage.setItem('clearMinds_sleep', JSON.stringify(sleepData));
+            
+            showNotification('Sleep logged successfully!', 'success');
+            this.reset();
+            document.getElementById('sleepDate').valueAsDate = new Date();
+            document.querySelectorAll('.quality-option').forEach(b => b.classList.remove('active'));
+            updateStats();
+            loadHistory();
+        });
+
+        // Update statistics
+        function updateStats() {
+            const sleepData = JSON.parse(localStorage.getItem('clearMinds_sleep')) || [];
+            
+            if (sleepData.length === 0) {
+                document.getElementById('avgSleep').textContent = '0';
+                document.getElementById('totalNights').textContent = '0';
+                document.getElementById('goodSleep').textContent = '0';
+                return;
+            }
+            
+            const totalHours = sleepData.reduce((sum, entry) => sum + entry.duration, 0);
+            const avgHours = (totalHours / sleepData.length).toFixed(1);
+            const goodNights = sleepData.filter(e => e.quality === 'good' || e.quality === 'excellent').length;
+            
+            document.getElementById('avgSleep').textContent = avgHours;
+            document.getElementById('totalNights').textContent = sleepData.length;
+            document.getElementById('goodSleep').textContent = goodNights;
+        }
+
+        // Load history
+        function loadHistory() {
+            const sleepData = JSON.parse(localStorage.getItem('clearMinds_sleep')) || [];
+            const container = document.getElementById('sleepHistory');
+            
+            if (sleepData.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state" style="grid-column: 1/-1;">
+                        <i class="fas fa-bed"></i>
+                        <h3>No sleep data yet</h3>
+                        <p>Start tracking your sleep to see patterns and improve your health!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = sleepData.reverse().map(entry => `
+                <div class="history-item">
+                    <div>
+                        <div class="history-date">${new Date(entry.date).toLocaleDateString()}</div>
+                        <small>${entry.notes || 'No notes'}</small>
+                    </div>
+                    <div class="history-data">
+                        <span><strong>${entry.duration}h</strong> sleep</span>
+                        <span>Quality: <strong>${entry.quality}</strong></span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initial load
+        updateStats();
+        loadHistory();
+    </script>
+</body>
+</html>
