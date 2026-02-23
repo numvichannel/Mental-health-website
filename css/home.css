@@ -1,0 +1,687 @@
+/* ========================================
+   CLEAR MINDS - HOME PAGE STYLES
+   ======================================== */
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+
+.hero {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+}
+
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-lg);
+    animation: slideDown 0.6s ease;
+}
+
+.hero-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xl);
+    animation: slideDown 0.7s ease;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    animation: slideDown 0.8s ease;
+}
+
+.hero-buttons .btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+/* Animated Background Circles */
+.hero-animation {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.animated-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: float 6s ease-in-out infinite;
+}
+
+.circle-1 {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    right: 10%;
+    animation-delay: 0s;
+}
+
+.circle-2 {
+    width: 150px;
+    height: 150px;
+    bottom: 20%;
+    left: 5%;
+    animation-delay: 2s;
+}
+
+.circle-3 {
+    width: 100px;
+    height: 100px;
+    top: 50%;
+    left: 50%;
+    animation-delay: 4s;
+}
+
+/* ========================================
+   FEATURES SECTION
+   ======================================== */
+
+.features {
+    background-color: var(--bg-white);
+    padding: 80px 0;
+}
+
+.features h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-gray);
+    margin-bottom: 50px !important;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-card {
+    background-color: var(--bg-gray);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    text-align: center;
+    transition: var(--transition-slow);
+    cursor: pointer;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: var(--transition);
+}
+
+.feature-card:hover::before {
+    transform: scaleX(1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    background-color: var(--bg-white);
+    border-color: var(--primary-color);
+}
+
+.feature-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-lg);
+    font-size: 2rem;
+    color: white;
+}
+
+.feature-card h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-dark);
+}
+
+.feature-card p {
+    color: var(--text-gray);
+    margin: 0;
+}
+
+/* ========================================
+   MOOD TRACKER SECTION
+   ======================================== */
+
+.mood-tracker {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+    padding: 80px 0;
+}
+
+.mood-selector {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    max-width: 600px;
+    margin: 50px auto;
+    justify-items: center;
+}
+
+.mood-option {
+    cursor: pointer;
+    text-align: center;
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    background-color: var(--bg-white);
+    border: 2px solid var(--border-color);
+    transition: var(--transition);
+    flex-basis: 90px;
+    flex-grow: 1;
+}
+
+.mood-option:hover {
+    transform: scale(1.1);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow);
+}
+
+.mood-option.selected {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-color: transparent;
+    color: white;
+}
+
+.mood-emoji {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+.mood-option span {
+    font-weight: 600;
+    display: block;
+    font-size: 0.9rem;
+}
+
+/* Mood Response */
+.mood-response {
+    background-color: var(--bg-white);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 30px auto;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--primary-color);
+    animation: slideUp 0.3s ease;
+}
+
+.mood-response h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.mood-suggestions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.mood-suggestion-item {
+    background-color: var(--bg-gray);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.mood-suggestion-item:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Mood Chart */
+.mood-chart {
+    background-color: var(--bg-white);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 40px auto;
+    box-shadow: var(--shadow);
+}
+
+/* ========================================
+   WELLNESS TOOLS SECTION
+   ======================================== */
+
+.wellness-tools {
+    background-color: var(--bg-white);
+    padding: 80px 0;
+}
+
+.wellness-tools h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.tool-card {
+    background: linear-gradient(135deg, var(--bg-white), var(--bg-gray));
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition-slow);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.tool-card.emergency {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+    border-color: var(--danger-color);
+}
+
+.tool-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: var(--spacing-lg);
+}
+
+.tool-card.emergency .tool-header {
+    background: linear-gradient(135deg, var(--danger-color), #f87171);
+}
+
+.tool-header h3 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.tool-header i {
+    font-size: 1.5rem;
+}
+
+.tool-content {
+    padding: var(--spacing-lg);
+}
+
+.tool-content p {
+    margin-bottom: var(--spacing-lg);
+}
+
+/* ========================================
+   BREATHING EXERCISE ANIMATION
+   ======================================== */
+
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px auto;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    animation: breathe 8s infinite;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+}
+
+@keyframes breathe {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+    25% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    75% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+}
+
+.breath-text {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.breathing-instructions {
+    background-color: var(--bg-gray);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    margin: var(--spacing-lg) 0;
+}
+
+.breathing-instructions p {
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-dark);
+}
+
+.breathing-timer {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* ========================================
+   GRATITUDE SECTION
+   ======================================== */
+
+.gratitude-prompt {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    line-height: 1.5;
+}
+
+.gratitude-textarea {
+    font-family: inherit;
+    resize: vertical;
+}
+
+/* ========================================
+   RESOURCES SECTION
+   ======================================== */
+
+.resources {
+    background-color: var(--bg-white);
+    padding: 80px 0;
+}
+
+.resources h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.resource-card {
+    background: linear-gradient(135deg, var(--bg-gray), var(--bg-white));
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    transition: var(--transition);
+    border: 2px solid var(--border-color);
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-lg);
+}
+
+.resource-card h3 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.resource-link {
+    display: inline-block;
+    margin-top: var(--spacing-md);
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.resource-link:hover {
+    transform: translateX(5px);
+}
+
+/* ========================================
+   STATS SECTION
+   ======================================== */
+
+.stats {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 60px 0;
+}
+
+.stats .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: #fff;
+}
+
+.stat-item p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+}
+
+/* ========================================
+   CTA SECTION
+   ======================================== */
+
+.cta {
+    background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+    color: white;
+    padding: 80px 0;
+    text-align: center;
+}
+
+.cta h2 {
+    color: white;
+    margin-bottom: var(--spacing-lg);
+}
+
+.cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xl);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.footer {
+    background-color: var(--text-dark);
+    color: white;
+    padding: 50px 0 20px;
+}
+
+.footer .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h4 {
+    color: white;
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer-section p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-section a {
+    color: rgba(255, 255, 255, 0.7);
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ========================================
+   RESPONSIVE HOME PAGE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-content p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .animated-circle {
+        display: none;
+    }
+    
+    .mood-selector {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .stats .container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 0;
+        min-height: 400px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+    
+    .features-grid,
+    .tools-grid,
+    .resources-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mood-selector {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stats .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer .container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Journal - CLEAR MINDS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .journal-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 40px 20px;
+        }
+
+        .journal-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .journal-header h1 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .journal-entry-box {
+            background-color: var(--bg-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .entry-form {
+            display: grid;
+            gap: 20px;
+        }
+
+        .form-field {
+            display: grid;
+        }
+
+        .form-field label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-field input,
+        .form-field textarea,
+        .form-field select {
+            width: 100%;
+        }
+
+        .mood-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .mood-tag {
+            padding: 8px 15px;
+            border-radius: 20px;
+            background-color: var(--bg-gray);
+            border: 2px solid var(--border-color);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .mood-tag:hover,
+        .mood-tag.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .entry-list {
+            display: grid;
+            gap: 20px;
+        }
+
+        .entry-card {
+            background-color: var(--bg-white);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .entry-date {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .entry-mood {
+            padding: 4px 12px;
+            border-radius: 20px;
+            background-color: var(--bg-gray);
+            font-size: 0.9rem;
+        }
+
+        .entry-content {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--bg-gray);
+            border-radius: 12px;
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>CLEAR MINDS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#wellness">Wellness</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Journal Container -->
+    <div class="journal-container">
+        <div class="journal-header">
+            <h1>📖 Mood Journal</h1>
+            <p>Express your thoughts and feelings through reflective journaling</p>
+        </div>
+
+        <!-- New Entry -->
+        <div class="journal-entry-box">
+            <h2>New Entry</h2>
+            <form id="journalForm" class="entry-form">
+                <div class="form-field">
+                    <label>How are you feeling?</label>
+                    <input type="date" id="entryDate" required>
+                </div>
+
+                <div class="form-field">
+                    <label>Select your mood:</label>
+                    <div class="mood-tags">
+                        <button type="button" class="mood-tag" data-mood="happy">😊 Happy</button>
+                        <button type="button" class="mood-tag" data-mood="sad">😢 Sad</button>
+                        <button type="button" class="mood-tag" data-mood="anxious">😰 Anxious</button>
+                        <button type="button" class="mood-tag" data-mood="calm">😌 Calm</button>
+                        <button type="button" class="mood-tag" data-mood="grateful">🙏 Grateful</button>
+                        <button type="button" class="mood-tag" data-mood="motivated">💪 Motivated</button>
+                    </div>
+                    <input type="hidden" id="selectedMood" name="mood">
+                </div>
+
+                <div class="form-field">
+                    <label>What's on your mind?</label>
+                    <textarea id="entryText" name="entry" placeholder="Write your thoughts and feelings here..." required></textarea>
+                </div>
+
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">Save Entry</button>
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Previous Entries -->
+        <div>
+            <h2 style="margin-bottom: 20px;">Recent Entries</h2>
+            <div id="entriesList" class="entry-list">
+                <!-- Entries will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 80px;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CLEAR MINDS. Your journal entries are private and stored locally.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Set today's date as default
+        document.getElementById('entryDate').valueAsDate = new Date();
+
+        // Mood tag selection
+        document.querySelectorAll('.mood-tag').forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.mood-tag').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.getElementById('selectedMood').value = this.getAttribute('data-mood');
+            });
+        });
+
+        // Form submission
+        document.getElementById('journalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const entry = {
+                date: document.getElementById('entryDate').value,
+                mood: document.getElementById('selectedMood').value,
+                text: document.getElementById('entryText').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Save to localStorage
+            let entries = JSON.parse(localStorage.getItem('clearMinds_journal')) || [];
+            entries.push(entry);
+            localStorage.setItem('clearMinds_journal', JSON.stringify(entries));
+            
+            showNotification('Journal entry saved!', 'success');
+            this.reset();
+            document.getElementById('entryDate').valueAsDate = new Date();
+            loadEntries();
+        });
+
+        // Load entries
+        function loadEntries() {
+            const entries = JSON.parse(localStorage.getItem('clearMinds_journal')) || [];
+            const container = document.getElementById('entriesList');
+            
+            if (entries.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-book"></i>
+                        <h3>No entries yet</h3>
+                        <p>Start your journaling journey by writing your first entry above!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = entries.reverse().map(entry => `
+                <div class="entry-card">
+                    <div class="entry-header">
+                        <div class="entry-date">${new Date(entry.date).toLocaleDateString('en-US', {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</div>
+                        <div class="entry-mood">${entry.mood}</div>
+                    </div>
+                    <div class="entry-content">${entry.text}</div>
+                </div>
+            `).join('');
+        }
+
+        // Load entries on page load
+        loadEntries();
+    </script>
+</body>
+</html>

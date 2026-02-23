@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Assessment - CLEAR MINDS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .assessment-container {
+            max-width: 700px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: var(--bg-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .assessment-header h1 {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .question-box {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: var(--bg-gray);
+            border-radius: 8px;
+        }
+
+        .question-box label {
+            display: block;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            background-color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .radio-option:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 10px;
+            width: auto;
+            cursor: pointer;
+        }
+
+        .result-box {
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .result-box.show {
+            display: block;
+            animation: slideUp 0.3s ease;
+        }
+
+        .result-box.low-stress {
+            background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+            border-left: 4px solid var(--success-color);
+        }
+
+        .result-box.moderate-stress {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .result-box.high-stress {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border-left: 4px solid var(--danger-color);
+        }
+
+        .result-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .result-box p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .recommendation {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>CLEAR MINDS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#wellness">Wellness</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Assessment Container -->
+    <div class="assessment-container">
+        <div class="assessment-header">
+            <h1>Stress Level Assessment</h1>
+            <p>This 5-minute assessment helps you understand your current stress level</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+        <form id="stressForm">
+            <div class="question-box">
+                <label>1. How often do you feel stressed?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="frequency" value="1" required>
+                        Rarely - Once in a while
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="frequency" value="2" required>
+                        Sometimes - A few times a week
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="frequency" value="3" required>
+                        Often - Most days
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="frequency" value="4" required>
+                        Very often - Almost always
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <label>2. How much does stress interfere with your daily life?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="interference" value="1" required>
+                        Minimal impact
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="interference" value="2" required>
+                        Moderate impact
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="interference" value="3" required>
+                        Significant impact
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="interference" value="4" required>
+                        Severe impact
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <label>3. How well do you manage your stress?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="management" value="4" required>
+                        Very well - I have good coping strategies
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="management" value="3" required>
+                        Adequately - I manage most of the time
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="management" value="2" required>
+                        Poorly - I struggle to cope
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="management" value="1" required>
+                        Not at all - I'm overwhelmed
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <label>4. Do you experience physical symptoms from stress?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="symptoms" value="1" required>
+                        Never
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="symptoms" value="2" required>
+                        Occasionally
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="symptoms" value="3" required>
+                        Frequently
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="symptoms" value="4" required>
+                        Constantly
+                    </label>
+                </div>
+            </div>
+
+            <div class="question-box">
+                <label>5. How is your sleep quality?</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="sleep" value="1" required>
+                        Excellent - I sleep well
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sleep" value="2" required>
+                        Good - Minor issues
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sleep" value="3" required>
+                        Poor - Frequent disruptions
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="sleep" value="4" required>
+                        Very poor - Significant problems
+                    </label>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary">Get Results</button>
+                <button type="reset" class="btn btn-secondary">Clear</button>
+            </div>
+        </form>
+
+        <!-- Results Section -->
+        <div id="resultBox" class="result-box">
+            <h2 id="resultTitle"></h2>
+            <p id="resultDescription"></p>
+            
+            <div id="resultRecommendations"></div>
+            
+            <div style="text-align: center; margin-top: 25px;">
+                <button class="btn btn-primary" onclick="document.getElementById('stressForm').reset(); document.getElementById('resultBox').classList.remove('show');">Take Assessment Again</button>
+                <button class="btn btn-secondary" onclick="location.href='../index.html#wellness'">Explore Wellness Tools</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 80px;">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2026 CLEAR MINDS. This assessment is not a replacement for professional help.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        document.getElementById('stressForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const frequency = parseInt(document.querySelector('input[name="frequency"]:checked').value);
+            const interference = parseInt(document.querySelector('input[name="interference"]:checked').value);
+            const management = parseInt(document.querySelector('input[name="management"]:checked').value);
+            const symptoms = parseInt(document.querySelector('input[name="symptoms"]:checked').value);
+            const sleep = parseInt(document.querySelector('input[name="sleep"]:checked').value);
+            
+            const score = (frequency + interference + management + symptoms + sleep) / 5;
+            
+            const resultBox = document.getElementById('resultBox');
+            const titleEl = document.getElementById('resultTitle');
+            const descEl = document.getElementById('resultDescription');
+            const recsEl = document.getElementById('resultRecommendations');
+            
+            let level, recommendations;
+            
+            if (score <= 1.5) {
+                resultBox.className = 'result-box low-stress show';
+                titleEl.textContent = '✓ Low Stress Level';
+                descEl.textContent = 'Great news! Your stress level is manageable. Continue maintaining your healthy habits and stress management practices.';
+                recommendations = [
+                    'Keep up with your current stress management routine',
+                    'Continue physical activity and exercise',
+                    'Maintain work-life balance',
+                    'Practice mindfulness regularly'
+                ];
+            } else if (score <= 2.5) {
+                resultBox.className = 'result-box moderate-stress show';
+                titleEl.textContent = '⚠ Moderate Stress Level';
+                descEl.textContent = 'You\'re experiencing moderate stress. Now is a good time to implement or strengthen stress management techniques.';
+                recommendations = [
+                    'Practice daily relaxation techniques',
+                    'Set better boundaries at work and home',
+                    'Try exercise: 30 minutes, 5 days a week',
+                    'Use guided meditation or breathing exercises',
+                    'Connect with supportive people'
+                ];
+            } else {
+                resultBox.className = 'result-box high-stress show';
+                titleEl.textContent = '🆘 High Stress Level';
+                descEl.textContent = 'Your stress level is significantly high. Consider seeking professional support to develop better coping strategies.';
+                recommendations = [
+                    'Seek support from a mental health professional',
+                    'Implement regular stress management techniques immediately',
+                    'Exercise daily if possible',
+                    'Consider professional therapy or counseling',
+                    'Reach out to trusted friends or family',
+                    'Take a break from stressful situations when possible'
+                ];
+            }
+            
+            recsEl.innerHTML = '<h3>Recommendations:</h3><div class="recommendation">' + 
+                recommendations.map(r => `<p>• ${r}</p>`).join('') + 
+                '</div>';
+            
+            // Update progress
+            document.getElementById('progressFill').style.width = ((score / 4) * 100) + '%';
+        });
+    </script>
+</body>
+</html>

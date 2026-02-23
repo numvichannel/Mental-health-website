@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLEAR MINDS - Mental Health & Wellness</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>CLEAR MINDS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#wellness">Wellness Tools</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="pages/contact.html" class="btn-primary">Contact Us</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Your Mental Wellness Companion</h1>
+            <p>A safe space to explore, understand, and nurture your mental health with personalized wellness tools</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">Get Started</button>
+                <button class="btn btn-secondary" onclick="document.getElementById('mood-tracker').scrollIntoView({behavior: 'smooth'})">Explore Tools</button>
+            </div>
+        </div>
+        <div class="hero-animation">
+            <div class="animated-circle circle-1"></div>
+            <div class="animated-circle circle-2"></div>
+            <div class="animated-circle circle-3"></div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Choose CLEAR MINDS?</h2>
+            <p class="section-subtitle">Comprehensive wellness management at your fingertips</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Mood Tracking</h3>
+                    <p>Track your emotional wellness with AI-powered insights and personalized recommendations</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Guided Meditation</h3>
+                    <p>Expert-led mindfulness sessions, breathing exercises, and relaxation techniques</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Wellness Programs</h3>
+                    <p>Customized self-care programs tailored to your unique mental health goals</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Connect with others, share experiences, and build meaningful relationships</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Knowledge Base</h3>
+                    <p>Access expert articles, research, and educational content about mental health</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Privacy Guaranteed</h3>
+                    <p>Your data is encrypted and protected with enterprise-grade security</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovative Mood Tracker -->
+    <section class="mood-tracker" id="mood-tracker">
+        <div class="container">
+            <h2>How Are You Feeling Today?</h2>
+            <p class="section-subtitle">Track your emotions and discover patterns</p>
+            
+            <div class="mood-selector">
+                <div class="mood-option" data-mood="excellent">
+                    <div class="mood-emoji">😄</div>
+                    <span>Excellent</span>
+                </div>
+                <div class="mood-option" data-mood="good">
+                    <div class="mood-emoji">🙂</div>
+                    <span>Good</span>
+                </div>
+                <div class="mood-option" data-mood="okay">
+                    <div class="mood-emoji">😐</div>
+                    <span>Okay</span>
+                </div>
+                <div class="mood-option" data-mood="sad">
+                    <div class="mood-emoji">😓</div>
+                    <span>Sad</span>
+                </div>
+                <div class="mood-option" data-mood="stressed">
+                    <div class="mood-emoji">😰</div>
+                    <span>Stressed</span>
+                </div>
+            </div>
+
+            <div id="mood-response" class="mood-response hidden">
+                <h3>We're here for you!</h3>
+                <p id="mood-message"></p>
+                <div id="mood-suggestions"></div>
+            </div>
+
+            <div id="mood-chart" class="mood-chart">
+                <canvas id="moodCanvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wellness Tools Section -->
+    <section class="wellness-tools" id="wellness">
+        <div class="container">
+            <h2>Interactive Wellness Tools</h2>
+            
+            <div class="tools-grid">
+                <!-- Breathing Exercise -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-lungs"></i> Breathing Exercise</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>4-7-8 Breathing Technique for instant calm</p>
+                        <button class="btn btn-primary" onclick="startBreathingExercise()">Start Exercise</button>
+                    </div>
+                </div>
+
+                <!-- Stress Assessment -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-heartbeat"></i> Stress Assessment</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Quick 5-minute assessment of your stress levels</p>
+                        <button class="btn btn-primary" onclick="location.href='pages/stress-assessment.html'">Take Assessment</button>
+                    </div>
+                </div>
+
+                <!-- Sleep Tracker -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-bed"></i> Sleep Tracker</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Monitor sleep patterns and get improvement tips</p>
+                        <button class="btn btn-primary" onclick="location.href='pages/sleep-tracker.html'">Track Sleep</button>
+                    </div>
+                </div>
+
+                <!-- Mood Journal -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-feather-alt"></i> Mood Journal</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Express yourself with reflective journaling prompts</p>
+                        <button class="btn btn-primary" onclick="location.href='pages/journal.html'">Start Journal</button>
+                    </div>
+                </div>
+
+                <!-- Gratitude Practice -->
+                <div class="tool-card">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-heart"></i> Gratitude Practice</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Daily gratitude exercises to boost positivity</p>
+                        <button class="btn btn-primary" onclick="startGratitude()">Practice Now</button>
+                    </div>
+                </div>
+
+                <!-- Crisis Support -->
+                <div class="tool-card emergency">
+                    <div class="tool-header">
+                        <h3><i class="fas fa-life-ring"></i> Crisis Support</h3>
+                    </div>
+                    <div class="tool-content">
+                        <p>Immediate help when you need it most</p>
+                        <button class="btn btn-emergency" onclick="location.href='pages/crisis-support.html'">Get Help Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breathing Exercise Modal -->
+    <div id="breathingModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeBreathingModal()">&times;</span>
+            <h2>4-7-8 Breathing Exercise</h2>
+            <p>A calming technique to reduce anxiety and promote relaxation</p>
+            
+            <div class="breathing-circle" id="breathingCircle">
+                <div class="breath-text" id="breathText">Ready?</div>
+            </div>
+            
+            <div class="breathing-instructions">
+                <p>1. Breathe in for 4 seconds</p>
+                <p>2. Hold for 7 seconds</p>
+                <p>3. Exhale for 8 seconds</p>
+            </div>
+            
+            <button class="btn btn-primary" onclick="performBreathing()">Start Breathing</button>
+            <p class="breathing-timer">Breaths completed: <span id="breathCount">0</span>/4</p>
+        </div>
+    </div>
+
+    <!-- Gratitude Modal -->
+    <div id="gratitudeModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeGratitudeModal()">&times;</span>
+            <h2>Daily Gratitude Practice</h2>
+            <p id="gratitudePrompt" class="gratitude-prompt"></p>
+            
+            <textarea id="gratitudeText" placeholder="Write what you're grateful for..." class="gratitude-textarea"></textarea>
+            
+            <button class="btn btn-primary" onclick="saveGratitude()">Save & Next Prompt</button>
+        </div>
+    </div>
+
+    <!-- Resources Section -->
+    <section class="resources" id="resources">
+        <div class="container">
+            <h2>Mental Health Resources</h2>
+            <p class="section-subtitle">Professional guidance and support information</p>
+            
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <h3>Understanding Anxiety</h3>
+                    <p>Learn about anxiety disorders, triggers, and coping strategies</p>
+                    <a href="pages/resources/anxiety.html" class="resource-link">Read More →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Depression Support</h3>
+                    <p>Guidance for managing depression and finding professional help</p>
+                    <a href="pages/resources/depression.html" class="resource-link">Read More →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Stress Management</h3>
+                    <p>Proven techniques to manage daily stress effectively</p>
+                    <a href="pages/resources/stress.html" class="resource-link">Read More →</a>
+                </div>
+                <div class="resource-card">
+                    <h3>Healthy Sleep</h3>
+                    <p>Improve sleep quality with science-backed sleep hygiene tips</p>
+                    <a href="pages/resources/sleep.html" class="resource-link">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="50000">0</h3>
+                <p>Active Users</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="100">0</h3>
+                <p>Daily Wellness Goals Met</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="95">0</h3>
+                <p>User Satisfaction %</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number" data-target="500">0</h3>
+                <p>Expert Articles</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Start Your Wellness Journey Today</h2>
+            <p>Join thousands of people taking control of their mental health</p>
+            <button class="btn btn-primary btn-large">Create Free Account</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4><i class="fas fa-brain"></i> CLEAR MINDS</h4>
+                    <p>Your trusted mental health companion</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#wellness">Wellness</a></li>
+                        <li><a href="pages/about.html">About</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="pages/crisis-support.html">Crisis Support</a></li>
+                        <li><a href="pages/privacy.html">Privacy Policy</a></li>
+                        <li><a href="pages/terms.html">Terms of Service</a></li>
+                        <li><a href="pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CLEAR MINDS. All rights reserved. | Your mental health matters.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>

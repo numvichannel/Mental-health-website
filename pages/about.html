@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - CLEAR MINDS</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .about-hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-container {
+            max-width: 1000px;
+            margin: -40px auto 60px;
+            padding: 40px;
+            background-color: var(--bg-white);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .about-section {
+            margin-bottom: 60px;
+        }
+
+        .about-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .about-section p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, var(--bg-gray), white);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--border-color);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .value-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item {
+            background-color: var(--bg-gray);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .feature-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .team-section {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+            padding: 30px;
+            background-color: var(--bg-gray);
+            border-radius: 12px;
+        }
+
+        .impact-stat {
+            text-align: center;
+        }
+
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .impact-label {
+            color: var(--text-gray);
+            font-weight: 600;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <span>CLEAR MINDS</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="about-hero">
+        <h1>About CLEAR MINDS</h1>
+        <p>Empowering millions to take control of their mental health</p>
+    </div>
+
+    <!-- About Content -->
+    <div class="about-container">
+        <!-- Mission -->
+        <div class="about-section">
+            <h2><i class="fas fa-bullseye"></i> Our Mission</h2>
+            <p>
+                At CLEAR MINDS, we believe that mental health is as important as physical health. Our mission is to create 
+                an accessible, judgment-free platform that empowers individuals to understand, track, and improve their mental 
+                well-being.
+            </p>
+            <p>
+                We're committed to breaking down barriers to mental health support by providing evidence-based tools and resources 
+                that anyone can use anytime, anywhere.
+            </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="about-section">
+            <h2><i class="fas fa-star"></i> Our Vision</h2>
+            <p>
+                We envision a world where mental health awareness is normalized, support is accessible to all, and individuals 
+                feel empowered to take control of their emotional well-being.
+            </p>
+        </div>
+
+        <!-- Core Values -->
+        <div class="about-section">
+            <h2><i class="fas fa-heart"></i> Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Compassion</h3>
+                    <p>We approach every user with empathy and understanding</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>Privacy</h3>
+                    <p>Your mental health data is sacred and always protected</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">📚</div>
+                    <h3>Education</h3>
+                    <p>We empower users with knowledge and understanding</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">♿</div>
+                    <h3>Accessibility</h3>
+                    <p>Mental health support should be available to everyone</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔬</div>
+                    <h3>Evidence-Based</h3>
+                    <p>We use scientifically proven methods and approaches</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Community</h3>
+                    <p>Together, we support each other's wellness journey</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- What We Offer -->
+        <div class="about-section">
+            <h2><i class="fas fa-gift"></i> What We Offer</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <h4>🎭 Mood Tracking</h4>
+                    <p>Real-time mood monitoring with AI-powered insights and analytics</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🧘 Mindfulness Tools</h4>
+                    <p>Guided breathing exercises and meditation for stress relief</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📖 Journaling</h4>
+                    <p>Reflective journaling prompts to process emotions</p>
+                </div>
+                <div class="feature-item">
+                    <h4>😴 Sleep Tracking</h4>
+                    <p>Monitor sleep patterns and improve sleep quality</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📊 Assessment Tools</h4>
+                    <p>Science-backed assessments for stress and wellness</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🆘 Crisis Support</h4>
+                    <p>24/7 access to crisis resources and emergency hotlines</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Impact -->
+        <div class="about-section">
+            <h2><i class="fas fa-chart-line"></i> Our Impact</h2>
+            <div class="impact-stats">
+                <div class="impact-stat">
+                    <div class="impact-number">50K+</div>
+                    <div class="impact-label">Active Users</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">500+</div>
+                    <div class="impact-label">Resource Articles</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">95%</div>
+                    <div class="impact-label">User Satisfaction</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">24/7</div>
+                    <div class="impact-label">Support Available</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Why Choose Us -->
+        <div class="about-section">
+            <h2><i class="fas fa-check-circle"></i> Why Choose CLEAR MINDS?</h2>
+            <ul style="line-height: 2.2; font-size: 1.05rem; color: var(--text-gray);">
+                <li>✅ <strong>Privacy First</strong> - Your data stays on your device, never uploaded to servers</li>
+                <li>✅ <strong>Free to Use</strong> - All core features are available at no cost</li>
+                <li>✅ <strong>No Account Required</strong> - Start using immediately without signup</li>
+                <li>✅ <strong>Science-Backed</strong> - All tools based on proven mental health practices</li>
+                <li>✅ <strong>Beautiful Design</strong> - Intuitive interface that's easy and enjoyable to use</li>
+                <li>✅ <strong>Completely Offline</strong> - Works without internet connection (after loading)</li>
+                <li>✅ <strong>Dark Mode</strong> - Comfortable for late-night journaling and reflection</li>
+                <li>✅ <strong>Mobile Friendly</strong> - Full functionality on smartphones and tablets</li>
+            </ul>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="about-section" style="background: linear-gradient(135deg, #fee2e2, #fecaca); padding: 30px; border-radius: 12px; border-left: 4px solid var(--danger-color);">
+            <h2 style="color: var(--danger-color);"><i class="fas fa-exclamation-triangle"></i> Important Disclaimer</h2>
+            <p style="color: #991b1b; font-weight: 500;">
+                <strong>CLEAR MINDS is not a replacement for professional mental health care.</strong> While our tools are designed 
+                to support your mental wellness journey, they should be used in conjunction with professional treatment, not instead of it.
+            </p>
+            <p style="color: #991b1b;">
+                If you are experiencing a mental health crisis or having thoughts of suicide, please contact emergency services or 
+                call the National Suicide Prevention Lifeline at 988 immediately.
+            </p>
+        </div>
+
+        <!-- Team -->
+        <div class="team-section">
+            <h2 style="color: var(--text-dark); margin-bottom: 20px;">Our Team</h2>
+            <p>
+                CLEAR MINDS is built by a dedicated team of mental health professionals, software engineers, and designers 
+                who share a common goal: making mental health support accessible to everyone.
+            </p>
+            <p style="margin-top: 20px;">
+                We're constantly working to improve and expand CLEAR MINDS to better serve your mental health needs.
+            </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="about-section" style="text-align: center;">
+            <h2>Get In Touch</h2>
+            <p>Have questions or feedback? We'd love to hear from you!</p>
+            <a href="contact.html" class="btn btn-primary" style="display: inline-block;">Contact Us</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top: 80px;">
+        <div class="container">
+            <div class="footer-content" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px;">
+                <div class="footer-section">
+                    <h4><i class="fas fa-brain"></i> CLEAR MINDS</h4>
+                    <p>Empowering mental health, one mind at a time.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="../index.html">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="../index.html#features">Features</a></li>
+                        <li style="margin-bottom: 10px;"><a href="about.html">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="crisis-support.html">Crisis Support</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Privacy Policy</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 CLEAR MINDS. All rights reserved. Mental health matters.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
